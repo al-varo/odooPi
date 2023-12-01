@@ -84,11 +84,13 @@ curl https://bootstrap.pypa.io/pip/2.7/get-pip.py --output get-pip.py
 #------------------
 # Make alias python and pip
 #---------------------------
-sudo su root -c "printf 'alias python=python2\n' >> ~/.bashrc"
-printf 'alias python=python2\n' >> ~/.bashrc
-sudo su root -c "printf 'alias pip=pip2\n' >> ~/.bashrc"
-printf 'alias pip=pip2\n' >> ~/.bashrc
-alias python=python2
+#sudo su root -c "printf 'alias python=python2\n' >> ~/.bashrc"
+#printf 'alias python=python2\n' >> ~/.bashrc
+#sudo su root -c "printf 'alias pip=pip2\n' >> ~/.bashrc"
+#printf 'alias pip=pip2\n' >> ~/.bashrc
+#alias python=python2
+sudo ln -s /usr/bin/python2.7 /usr/bin/python2 
+sudo ln -s /usr/bin/python2 /usr/bin/python
 python get-pip.py
 
 
