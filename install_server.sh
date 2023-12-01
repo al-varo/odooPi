@@ -81,8 +81,6 @@ sudo su - postgres -c "createuser -s $OE_USER" 2> /dev/null || true
 echo -e "\n--- Installing Python 3 + pip --"
 sudo apt-get install git python2 python2-dev  build-essential wget libxslt-dev libzip-dev libldap2-dev libsasl2-dev node-less libpng16-16 libjpeg-dev gdebi -y
 curl https://bootstrap.pypa.io/pip/2.7/get-pip.py --output get-pip.py
-python get-pip.py
-
 #------------------
 # Make alias python and pip
 #---------------------------
@@ -91,7 +89,9 @@ printf 'alias python=python2\n' >> ~/.bashrc
 sudo su root -c "printf 'alias pip=pip2\n' >> ~/.bashrc"
 printf 'alias pip=pip2\n' >> ~/.bashrc
 alias python=python2
-alias pip=pip2
+python get-pip.py
+
+
 echo -e "\n---- Install python packages/requirements ----"
 sudo -H pip install -r https://github.com/odoo/odoo/raw/${OE_VERSION}/requirements.txt
 
