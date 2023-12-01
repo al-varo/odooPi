@@ -67,6 +67,9 @@ sudo apt-get upgrade -y
 # Install PostgreSQL Server
 #--------------------------------------------------
 echo -e "\n---- Install PostgreSQL Server ----"
+sudo sh -c 'echo "deb https://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+sudo apt-get update
 sudo apt-get install postgresql-13 postgresql-server-dev-13 -y
 
 echo -e "\n---- Creating the ODOO PostgreSQL User  ----"
@@ -80,6 +83,15 @@ sudo apt-get install git python2 python2-dev  build-essential wget libxslt-dev l
 curl https://bootstrap.pypa.io/pip/2.7/get-pip.py --output get-pip.py
 python get-pip.py
 
+#------------------
+# Make alias python and pip
+#---------------------------
+sudo su root -c "printf 'alias python=python2\n' >> ~/.bashrc"
+printf 'alias python=python2\n' >> ~/.bashrc
+sudo su root -c "printf 'alias pip=pip2\n' >> ~/.bashrc"
+printf 'alias pip=pip2\n' >> ~/.bashrc
+alias python=python2
+alias pip=pip2
 echo -e "\n---- Install python packages/requirements ----"
 sudo -H pip install -r https://github.com/odoo/odoo/raw/${OE_VERSION}/requirements.txt
 
